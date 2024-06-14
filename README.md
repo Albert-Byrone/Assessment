@@ -320,53 +320,19 @@ End Function
 
 Solution
 
-// Define a function to flatten any multi-dimensional array into a single-dimensional array.
+```js
 function flattenArray(arr) {
-// Initialize an empty array to hold the flattened results.
-let result = [];
+  let result = [];
 
-// Define a helper function that will be used to process each element of the array.
-function flatten(element) {
-// Check if the current element is an array.
-if (Array.isArray(element)) {
-// If the element is an array, recursively call the flatten function on each item in this array.
-element.forEach(flatten);
-} else {
-// If the element is not an array (i.e., it is a primitive value), add it to the result array.
-result.push(element);
+  const flatten = function (element) {
+    if (Array.isArray(element)) {
+      element.forEach(flatten);
+    } else {
+      result.push(element);
+    }
+  };
+
+  arr.forEach(flatten);
+  return result;
 }
-}
-
-// Start the flattening process by applying the flatten function to each element in the initial array.
-arr.forEach(flatten);
-
-// After processing all elements, return the single-dimensional result array.
-return result;
-}
-
-// Example of a multi-dimensional array to be flattened.
-const multi_dimension_arr = [
-[
-[
-[0, 2],
-[4, 5],
-],
-[
-[7, 8],
-[9, 3],
-],
-],
-[
-[
-[10, 12],
-[14, 15],
-],
-[
-[17, 18],
-[19, 13],
-],
-],
-];
-
-// Call the flattenArray function with the multi-dimensional array and log the output to the console.
-console.log(flattenArray(multi_dimension_arr));
+```
